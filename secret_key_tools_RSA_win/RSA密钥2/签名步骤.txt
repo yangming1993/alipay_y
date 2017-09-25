@@ -1,0 +1,20 @@
+一、签名准备
+1.原始内容：
+【app_id=2016081900287704&biz_content={"subject":"\u6d4b\u8bd5\u8ba2\u5355","out_trade_no":"201702021222","total_amount":0.01,"product_code":"FAST_INSTANT_TRADE_PAY"}&charset=utf-8&method=alipay.trade.page.pay&notify_url=http://projectsedus.com/&return_url=http://47.92.87.172:8000/&sign_type=RSA2&timestamp=2017-09-25 10:28:06&version=1.0】
+
+2.签名私钥：
+【MIIEpAIBAAKCAQEAxUs2gnBOXxZt4tGv9vYDspMYggDHP0rXv6Cq6L9sRIPb+jaMzGFf2ALz7MqY3qXR2/o5Egvxe8pjAwyVAK/nwI0iD86qjTqvYRThOeQucgIDzYhWJBrnAMEap2Josxf8D6JrjvWVrYTdQwXIneNQOIxzXxuYoI30UlYtSlwiFYtkpYtwmhv/h8JRYXjmo1fHcv5dhiMraTHodg6nQ4QSu4NrC6QWDRxF5ssZl3H1s+hq61D9ox4xnyGHgcIZEy5TSas76Zgi157LMqG51+WUK2SIvcGcAFgkQufzFpUtY62Ts/Khx3JMcx6yLUcwUSBZRTMasuYYfjnYXaSjhyTxrQIDAQABAoIBAQCr2k4K5MR/c0wYbMo39idWX2bTptXnvcuccdktj8BBFhKBKw8N4CvaPwg2VGtAVXQthxI7NAgO6kXAnC8WQCNAyC7JUh2hk2K8z7E3+hiy2ipx17YhEQXy1EHhV4kXp2a6P6ItDqJoWPlarikHzr9L4puEVsdl4wDUz5f307UkyZUysdjm2C7VCups35fA3XMlQhwRvPk5Zk90KH/ECAeXGijo1Xps6ji4ZvvJ66S4BXSzL6HC71SdaBsnGTmuD/xh5xhCzCJkB+uqaBBlWRkC9W/uuGDzB6HNOv3PFiA4O85f2Tg7/fsr3HQuna5YNFQcVqrRKg1ors8tPN1rQogJAoGBAOU16tLY4+/qUc++oPjvISFO10PaZbGUerAcwWyIDYki0ZSm+DumewsdbpsEQhqlajSPKIJREBreCVgagpJ59megyvlg7VY4X11U+szT1CGmk5kqQHtPvtOQfELyCj4TIEL2yNNoYsf5XrBL0spNtrStmVi3/3qnCkfqab1/FhGrAoGBANxaVJs9iEoa1ct6a6KK1Z05ElTNvJVq65zciQH05FiBJLYeXLb0Ndip6ubzhAazbkV19dIsTMifZ2oE0ACvy3LJNhnJ3EsgxEBWjeq49KfNjVePqhA3ca2FfePrhMIi9n3BaE0dXwoqxXgfRzDYl42uvKjb35ms+iDHIA03VWIHAoGBAKBO0WmeH+1QKN/vJ45zUOyGw6/FM5K7kgNSWUWa8jyTiZk6His6CJyBfTYWCFWyk1EnPuHF6EmiOU7RW7kua9OWdd9slxHSY4BXSwGutZLDej+JeYfFAmXdi8sWlWtM3Sd4ioSxYUUTd9I9dbPgHoTHVZTjO1+BLIOXw1SxabH5AoGAYQnSqo7dfyz0K+icj/ct/VAN15TG0NJGMk0YdOkgyi0NOrqCP/up3uFtVgm1gbHxBNvexpDFu7AfPZwi8bp5EPK1RYQU5GzooCC93LlY3LDz5rSYww13nV/lQcMNMuVswZKz2QnvOa3+SlkT49nuW/GwmXhCrw1zFY47ejZ8/m8CgYAWmMEyUe67rlTqqk3zji/dQhqkEZrwL46vf5+78+GC2ft8rg4/qzByawcmcYOq5UB2jyp0vjmH1pJyLJLQthJDk5E2Z83ib9dtzpf8dkwuvpcTJDBYzNsRM5OxLnP3P+PjYzeyQ0XdK6hKhvvKk4/GwcVmC+VntTojXahHOsg2zQ==】
+
+二、生成待签名字符串：
+1.剔除参数名(和参数值)前后的空格：
+(正常业务下，参数值前后不应含有空格)
+【app_id=2016081900287704&biz_content={"subject":"\u6d4b\u8bd5\u8ba2\u5355","out_trade_no":"201702021222","total_amount":0.01,"product_code":"FAST_INSTANT_TRADE_PAY"}&charset=utf-8&method=alipay.trade.page.pay&notify_url=http://projectsedus.com/&return_url=http://47.92.87.172:8000/&sign_type=RSA2&timestamp=2017-09-25 10:28:06&version=1.0】
+
+2.剔除空值参数：
+【app_id=2016081900287704&biz_content={"subject":"\u6d4b\u8bd5\u8ba2\u5355","out_trade_no":"201702021222","total_amount":0.01,"product_code":"FAST_INSTANT_TRADE_PAY"}&charset=utf-8&method=alipay.trade.page.pay&notify_url=http://projectsedus.com/&return_url=http://47.92.87.172:8000/&sign_type=RSA2&timestamp=2017-09-25 10:28:06&version=1.0】
+
+3.排序：
+【app_id=2016081900287704&biz_content={"subject":"\u6d4b\u8bd5\u8ba2\u5355","out_trade_no":"201702021222","total_amount":0.01,"product_code":"FAST_INSTANT_TRADE_PAY"}&charset=utf-8&method=alipay.trade.page.pay&notify_url=http://projectsedus.com/&return_url=http://47.92.87.172:8000/&sign_type=RSA2&timestamp=2017-09-25 10:28:06&version=1.0】
+
+三、生成签名：
+【eBo9KjCZCHwiuD84Vv5xnAnDMzkLPaOFQsKceCFaRkmA/XcSA9s6XOcJRIraYjfEv8KmVUhp4T22fc//qnl1KjM/GbJ1VoD8InF1MnkttSxDZ5pTEiY0AH5gNlOKhpFeJPsnbqSP6L3UmTECNCQ88V+ZkOzycpaF14go7m0A4JeRaO+HZjAkQF4R6g6fPnwe+ZbeAMx9RldHmz4p9Hwh/fJNK0pErzh6nhcnMiXYqj+/GARKKm7fNrd3XUBdUqjjDGrN4sgnqa5kBVslcTBb4h+A8ZDRyVDIlQG9u8lEe8FOLhLaGcuHVax+sjtaCaJmmlcrERiDFge++bSai6kMGw==】

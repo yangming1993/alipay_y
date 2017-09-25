@@ -1,0 +1,22 @@
+一、验签准备
+1.原始报文：
+【gmt_create=2017-09-25 15:50:15&charset=utf-8&gmt_payment=2017-09-25 15:50:23&notify_time=2017-09-25 15:50:24&subject=测试订单&sign=sGOELqWdqzAq5ew/579uxVfxyN2hedWEbZYpuUUovm1nDQAPD+vN+SWCkUp9pVdIA1embCm464CQvzZ6QcwOKoCzA3iqqXdRsCSJvCnxp912HPKYwDK1OHg+ni0z8u4ejTfv6LlmTHyoVyRQO6s1YkeVAt9yDBFq2S4cNth+nEY5sE9TmF4Tvn5HjLxKiMGiXBTTBD6V+s2xL3BY6Nm1e4UuWk6RLNFKWfl2l9AqHjs5SQh+MD7Ch25PLzWgYovQvfG+SrHmvqNTsSy1wfdDkdsqL93XvDNtH0PlstZzwTYXhOP/AcOV64XFNG+snGbqpPotc4mCDWjT5iI4kHRX2Q==&buyer_id=2088102174823514&invoice_amount=200.00&version=1.0&notify_id=ac1146634e0b764f133e8e272c10717jxq&fund_bill_list=[{"amount":"200.00","fundChannel":"ALIPAYACCOUNT"}]&notify_type=trade_status_sync&out_trade_no=201702221699&total_amount=200.00&trade_status=TRADE_SUCCESS&trade_no=2017092521001004510200267254&auth_app_id=2016081900287704&receipt_amount=200.00&point_amount=0.00&app_id=2016081900287704&buyer_pay_amount=200.00&sign_type=RSA2&seller_id=2088102172085130】
+
+2.验签公钥：
+【MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9NtJMOVK9NFQmlerYQYt9fO2THEq9NomGUCa4CGcGvibq+aqrSOSG8y55/CfQ6CSWuG7F+9uQ3XBEr456KZDBli/WIvcru663ASTWGTeCsO5qAMJ8X6ex2MthQIOJtmQMwtBYpbz2z1Utq3Y9lg5QFvltrmv8lfeB+uo6ULFiD060MgRQt4wK3d8+MJV4ITTeGEbSjh/VPLdVDuU8vTCRUFLqfWACmoeGYk3BLlDPSDall3ZIIhd7Q3Mm/JqMTG2lUhu4zKqwlAh8V8Xvl+PvhTgL3QHWKdApaG3kLIeWo5E1oJoLAXD6mNfZg5HD3iHqcZjAmR8lUN2HycpWU0LrwIDAQAB】
+
+3.从报文取出签名值sign：
+【sGOELqWdqzAq5ew/579uxVfxyN2hedWEbZYpuUUovm1nDQAPD+vN+SWCkUp9pVdIA1embCm464CQvzZ6QcwOKoCzA3iqqXdRsCSJvCnxp912HPKYwDK1OHg+ni0z8u4ejTfv6LlmTHyoVyRQO6s1YkeVAt9yDBFq2S4cNth+nEY5sE9TmF4Tvn5HjLxKiMGiXBTTBD6V+s2xL3BY6Nm1e4UuWk6RLNFKWfl2l9AqHjs5SQh+MD7Ch25PLzWgYovQvfG+SrHmvqNTsSy1wfdDkdsqL93XvDNtH0PlstZzwTYXhOP/AcOV64XFNG+snGbqpPotc4mCDWjT5iI4kHRX2Q==】
+
+二、组成待验签串：
+1.剔除空值参数：
+【gmt_create=2017-09-25 15:50:15&charset=utf-8&gmt_payment=2017-09-25 15:50:23&notify_time=2017-09-25 15:50:24&subject=测试订单&sign=sGOELqWdqzAq5ew/579uxVfxyN2hedWEbZYpuUUovm1nDQAPD+vN+SWCkUp9pVdIA1embCm464CQvzZ6QcwOKoCzA3iqqXdRsCSJvCnxp912HPKYwDK1OHg+ni0z8u4ejTfv6LlmTHyoVyRQO6s1YkeVAt9yDBFq2S4cNth+nEY5sE9TmF4Tvn5HjLxKiMGiXBTTBD6V+s2xL3BY6Nm1e4UuWk6RLNFKWfl2l9AqHjs5SQh+MD7Ch25PLzWgYovQvfG+SrHmvqNTsSy1wfdDkdsqL93XvDNtH0PlstZzwTYXhOP/AcOV64XFNG+snGbqpPotc4mCDWjT5iI4kHRX2Q==&buyer_id=2088102174823514&invoice_amount=200.00&version=1.0&notify_id=ac1146634e0b764f133e8e272c10717jxq&fund_bill_list=[{"amount":"200.00","fundChannel":"ALIPAYACCOUNT"}]&notify_type=trade_status_sync&out_trade_no=201702221699&total_amount=200.00&trade_status=TRADE_SUCCESS&trade_no=2017092521001004510200267254&auth_app_id=2016081900287704&receipt_amount=200.00&point_amount=0.00&app_id=2016081900287704&buyer_pay_amount=200.00&sign_type=RSA2&seller_id=2088102172085130】
+
+2.剔除sign、sign_type参数：
+【gmt_create=2017-09-25 15:50:15&charset=utf-8&gmt_payment=2017-09-25 15:50:23&notify_time=2017-09-25 15:50:24&subject=测试订单&buyer_id=2088102174823514&invoice_amount=200.00&version=1.0&notify_id=ac1146634e0b764f133e8e272c10717jxq&fund_bill_list=[{"amount":"200.00","fundChannel":"ALIPAYACCOUNT"}]&notify_type=trade_status_sync&out_trade_no=201702221699&total_amount=200.00&trade_status=TRADE_SUCCESS&trade_no=2017092521001004510200267254&auth_app_id=2016081900287704&receipt_amount=200.00&point_amount=0.00&app_id=2016081900287704&buyer_pay_amount=200.00&seller_id=2088102172085130】
+
+3、排序：
+【app_id=2016081900287704&auth_app_id=2016081900287704&buyer_id=2088102174823514&buyer_pay_amount=200.00&charset=utf-8&fund_bill_list=[{"amount":"200.00","fundChannel":"ALIPAYACCOUNT"}]&gmt_create=2017-09-25 15:50:15&gmt_payment=2017-09-25 15:50:23&invoice_amount=200.00&notify_id=ac1146634e0b764f133e8e272c10717jxq&notify_time=2017-09-25 15:50:24&notify_type=trade_status_sync&out_trade_no=201702221699&point_amount=0.00&receipt_amount=200.00&seller_id=2088102172085130&subject=测试订单&total_amount=200.00&trade_no=2017092521001004510200267254&trade_status=TRADE_SUCCESS&version=1.0】
+
+三、验签结果：
+【验签成功】
